@@ -88,8 +88,14 @@ function Index() {
   const t = copy[language];
 
   const entries = questionData[selected][type];
-  const card = entries[cardIndex % entries.length];
-  const activeCategory = useMemo(() => categories.find((item) => item.key === selected) ?? categories[0], [selected]);
+  const card = entries[cardIndex % entries.length] ?? { id: "Mari mulai obrolannya.", en: "Let's start the conversation." };
+  const reverseType: CardType = type === "truth" ? "dare" : "truth";
+  const reverseEntries = questionData[selected][reverseType];
+  const reverseCard = reverseEntries[cardIndex % reverseEntries.length] ?? { id: "Berikan tantangan terbaikmu.", en: "Give your best challenge." };
+  const activeCategory = useMemo(
+    () => categories.find((item) => item.key === selected) ?? { key: "pacar" as Category, label: { id: "Pacar", en: "Couples" }, color: "bg-category-pacar", mark: "♡" },
+    [selected],
+  );
 
   const nextCard = () => {
     setFlipped(false);
@@ -142,7 +148,7 @@ function Index() {
             >
               <div className={`preserve-3d relative aspect-[5/7] w-full transition-transform duration-700 ${flipped ? "rotate-y-180" : ""}`}>
                 <CardFace front language={language} type={type} prompt={card[language]} label={type === "truth" ? t.question : t.challenge} />
-                <CardFace language={language} type={type} prompt={card[language]} label={type === "truth" ? t.question : t.challenge} />
+                <CardFace language={language} type={reverseType} prompt={reverseCard[language]} label={reverseType === "truth" ? t.question : t.challenge} />
               </div>
             </Button>
           </div>
