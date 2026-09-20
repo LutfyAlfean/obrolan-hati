@@ -1,0 +1,74 @@
+{
+  "pacar": {
+    "truth": [
+      { "id": "Apa hal yang paling kamu takutkan kehilangan dari diriku?", "en": "What are you most afraid of losing about me?" },
+      { "id": "Kapan terakhir kali kamu merasa paling dicintai olehku?", "en": "When did you last feel the most loved by me?" },
+      { "id": "Kebiasaan kecilku apa yang diam-diam kamu suka?", "en": "What little habit of mine do you secretly love?" }
+    ],
+    "dare": [
+      { "id": "Coba puji aku 3 kali berturut-turut tanpa tersenyum.", "en": "Give me three compliments in a row without smiling." },
+      { "id": "Tatap mataku selama 20 detik tanpa bicara.", "en": "Look into my eyes for 20 seconds without speaking." },
+      { "id": "Kirim voice note paling manis yang bisa kamu buat sekarang.", "en": "Send the sweetest voice note you can make right now." }
+    ]
+  },
+  "pdkt": {
+    "truth": [
+      { "id": "Apa kesan pertamamu waktu kita mulai ngobrol?", "en": "What was your first impression when we started talking?" },
+      { "id": "Hal apa yang bikin kamu tertarik mengenalku lebih jauh?", "en": "What made you want to get to know me better?" },
+      { "id": "Menurutmu, tanda seseorang benar-benar suka itu apa?", "en": "What do you think is a real sign that someone likes you?" }
+    ],
+    "dare": [
+      { "id": "Pilih satu lagu yang menggambarkan aku, lalu putar sekarang.", "en": "Pick one song that reminds you of me and play it now." },
+      { "id": "Ceritakan ide kencan sederhana yang ingin kamu coba bareng aku.", "en": "Tell me one simple date idea you'd like to try with me." },
+      { "id": "Buat satu panggilan lucu untukku dan pakai sampai permainan selesai.", "en": "Make up a cute nickname for me and use it until the game ends." }
+    ]
+  },
+  "teman": {
+    "truth": [
+      { "id": "Momen paling kocak apa yang pernah kita alami bareng?", "en": "What's the funniest moment we've ever shared?" },
+      { "id": "Satu hal apa yang selalu bisa kamu ceritakan ke aku?", "en": "What's one thing you can always talk to me about?" },
+      { "id": "Kalau kita liburan besok, kamu mau pergi ke mana?", "en": "If we traveled tomorrow, where would you want to go?" }
+    ],
+    "dare": [
+      { "id": "Tirukan gaya bicaraku selama 30 detik.", "en": "Imitate the way I talk for 30 seconds." },
+      { "id": "Tunjukkan foto terlucu di galeri ponselmu.", "en": "Show the funniest photo in your phone gallery." },
+      { "id": "Buat jabat tangan rahasia kita sekarang.", "en": "Create our secret handshake right now." }
+    ]
+  },
+  "pasutri": {
+    "truth": [
+      { "id": "Apa mimpi kecil yang ingin kita wujudkan tahun ini?", "en": "What small dream should we make happen this year?" },
+      { "id": "Hal sederhana apa dariku yang membuat rumah terasa nyaman?", "en": "What simple thing I do makes our home feel warm?" },
+      { "id": "Kenangan awal pernikahan mana yang paling kamu rindukan?", "en": "Which memory from our early marriage do you miss most?" }
+    ],
+    "dare": [
+      { "id": "Peluk pasanganmu selama 30 detik tanpa melepas.", "en": "Hug your partner for 30 seconds without letting go." },
+      { "id": "Rencanakan satu quality time tanpa gawai minggu ini.", "en": "Plan one screen-free quality time this week." },
+      { "id": "Ucapkan terima kasih untuk satu hal yang jarang kamu ungkapkan.", "en": "Say thank you for one thing you rarely acknowledge." }
+    ]
+  },
+  "keluarga": {
+    "truth": [
+      { "id": "Tradisi keluarga apa yang ingin kamu pertahankan selamanya?", "en": "Which family tradition would you keep forever?" },
+      { "id": "Siapa di keluarga yang paling menginspirasimu, dan kenapa?", "en": "Who in the family inspires you most, and why?" },
+      { "id": "Momen di rumah apa yang selalu bikin kamu tersenyum?", "en": "What moment at home always makes you smile?" }
+    ],
+    "dare": [
+      { "id": "Sebutkan satu kelebihan setiap orang yang ikut bermain.", "en": "Name one good quality about everyone playing." },
+      { "id": "Ceritakan lelucon keluarga favoritmu dengan gaya paling dramatis.", "en": "Tell your favorite family joke as dramatically as possible." },
+      { "id": "Ajak semua orang membuat foto keluarga kocak sekarang.", "en": "Get everyone together for a funny family photo right now." }
+    ]
+  },
+  "mantan": {
+    "truth": [
+      { "id": "Pelajaran terbaik apa yang kamu dapat dari hubungan kita?", "en": "What's the best lesson you learned from our relationship?" },
+      { "id": "Apa hal yang sekarang bisa kamu lihat dengan lebih dewasa?", "en": "What can you see more maturely now?" },
+      { "id": "Kalau bisa mengulang satu percakapan, percakapan mana yang kamu pilih?", "en": "If you could redo one conversation, which one would it be?" }
+    ],
+    "dare": [
+      { "id": "Sampaikan satu doa baik untuk masa depanku.", "en": "Share one sincere wish for my future." },
+      { "id": "Sebutkan satu kenangan baik tanpa membahas yang buruk.", "en": "Share one good memory without mentioning the bad." },
+      { "id": "Tutup satu cerita lama dengan kalimat paling jujurmu.", "en": "Close one old chapter with your most honest sentence." }
+    ]
+  }
+}
