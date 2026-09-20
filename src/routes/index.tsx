@@ -1,24 +1,254 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ArrowLeft, Heart, Languages, RefreshCw, Sparkles, Star } from "lucide-react";
+import { useMemo, useState } from "react";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import { Button } from "@/components/ui/button";
+import questionData from "@/data/questions.json";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "iaayan love — Kartu Obrolan Hati" },
+      { name: "description", content: "Mainkan kartu Truth or Dare dan Deep Talk untuk percakapan yang lebih dekat dan berkesan." },
+      { property: "og:title", content: "iaayan love — Kartu Obrolan Hati" },
+      { property: "og:description", content: "Mainkan kartu Truth or Dare dan Deep Talk untuk percakapan yang lebih dekat dan berkesan." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+type Language = "id" | "en";
+type Category = keyof typeof questionData;
+type CardType = "truth" | "dare";
+
+const categories: Array<{ key: Category; label: { id: string; en: string }; color: string; mark: string }> = [
+  { key: "pacar", label: { id: "Pacar", en: "Couples" }, color: "bg-category-pacar", mark: "♡" },
+  { key: "pdkt", label: { id: "PDKT", en: "Crush" }, color: "bg-category-pdkt", mark: "✦" },
+  { key: "teman", label: { id: "Teman", en: "Friends" }, color: "bg-category-teman", mark: "☻" },
+  { key: "pasutri", label: { id: "Pasutri", en: "Married" }, color: "bg-category-pasutri", mark: "∞" },
+  { key: "keluarga", label: { id: "Keluarga", en: "Family" }, color: "bg-category-keluarga", mark: "⌂" },
+  { key: "mantan", label: { id: "Mantan", en: "Exes" }, color: "bg-category-mantan", mark: "↝" },
+];
+
+const copy = {
+  id: {
+    subtitle: "Kartu Truth or Dare & Deep Talk",
+    intro: "Pilih edisi yang paling pas untuk obrolan kalian.",
+    choose: "Pilih Edisimu",
+    start: "Mulai Bermain",
+    sold: "50rb+ terjual",
+    rating: "Rating 4.9",
+    back: "Kembali ke Menu",
+    next: "Kartu Selanjutnya",
+    change: "Ganti Kartu",
+    truth: "Jujur",
+    dare: "Tantangan",
+    tap: "Ketuk kartu untuk membalik",
+    question: "Pertanyaan untuk kamu",
+    challenge: "Tantangan untuk kamu",
+  },
+  en: {
+    subtitle: "Truth or Dare & Deep Talk Cards",
+    intro: "Choose the edition that fits your conversation.",
+    choose: "Choose Your Edition",
+    start: "Start Playing",
+    sold: "50K+ sold",
+    rating: "4.9 rating",
+    back: "Back to Menu",
+    next: "Next Card",
+    change: "Shuffle Card",
+    truth: "Truth",
+    dare: "Dare",
+    tap: "Tap the card to flip",
+    question: "A question for you",
+    challenge: "A challenge for you",
+  },
+};
+
+function Brand({ compact = false }: { compact?: boolean }) {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="inline-flex items-center gap-2 text-primary">
+      <span className={`${compact ? "h-7 w-7" : "h-11 w-11"} grid place-items-center rounded-full border border-gold bg-card shadow-sm`}>
+        <Heart className={compact ? "size-3.5 fill-current" : "size-5 fill-current"} strokeWidth={1.5} />
+      </span>
+      <span className={`${compact ? "text-lg" : "text-2xl"} font-display font-semibold`}>iaayan love</span>
+    </div>
+  );
+}
+
+function Index() {
+  const [language, setLanguage] = useState<Language>("id");
+  const [selected, setSelected] = useState<Category>("pacar");
+  const [playing, setPlaying] = useState(false);
+  const [type, setType] = useState<CardType>("truth");
+  const [cardIndex, setCardIndex] = useState(0);
+  const [flipped, setFlipped] = useState(false);
+  const t = copy[language];
+
+  const entries = questionData[selected][type];
+  const card = entries[cardIndex % entries.length];
+  const activeCategory = useMemo(() => categories.find((item) => item.key === selected) ?? categories[0], [selected]);
+
+  const nextCard = () => {
+    setFlipped(false);
+    setCardIndex((current) => (current + 1) % entries.length);
+  };
+
+  const shuffleCard = () => {
+    setFlipped(false);
+    setType((current) => (current === "truth" ? "dare" : "truth"));
+    setCardIndex((current) => current + 1);
+  };
+
+  if (playing) {
+    return (
+      <main className="love-pattern relative min-h-dvh overflow-hidden bg-background px-4 py-5 sm:px-8 sm:py-7">
+        <header className="mx-auto flex max-w-5xl items-center justify-between">
+          <Button variant="quiet" onClick={() => setPlaying(false)} className="-ml-2 px-2 sm:px-3" aria-label={t.back}>
+            <ArrowLeft /> <span className="hidden sm:inline">{t.back}</span>
+          </Button>
+          <Brand compact />
+          <LanguageToggle language={language} setLanguage={setLanguage} />
+        </header>
+
+        <section className="mx-auto flex max-w-5xl flex-col items-center pt-6 sm:pt-9">
+          <div className="mb-4 flex items-center gap-2 text-sm font-medium text-muted-foreground">
+            <span className={`h-3 w-3 rounded-full ${activeCategory.color}`} />
+            {activeCategory.label[language]}
+          </div>
+
+          <div className="mb-5 grid grid-cols-2 rounded-lg border border-border bg-card/60 p-1 shadow-sm" aria-label="Card type">
+            {(["truth", "dare"] as CardType[]).map((item) => (
+              <Button
+                key={item}
+                variant={type === item ? "love" : "quiet"}
+                size="sm"
+                onClick={() => { setType(item); setCardIndex(0); setFlipped(false); }}
+                className="min-w-28"
+              >
+                {item === "truth" ? t.truth : t.dare}
+              </Button>
+            ))}
+          </div>
+
+          <div className="card-perspective w-full max-w-[350px]">
+            <Button
+              variant="bare"
+              onClick={() => setFlipped((value) => !value)}
+              aria-label={t.tap}
+              className="block h-auto w-full bg-transparent p-0 shadow-none hover:bg-transparent"
+            >
+              <div className={`preserve-3d relative aspect-[5/7] w-full transition-transform duration-700 ${flipped ? "rotate-y-180" : ""}`}>
+                <CardFace front language={language} type={type} prompt={card[language]} label={type === "truth" ? t.question : t.challenge} />
+                <CardFace language={language} type={type} prompt={card[language]} label={type === "truth" ? t.question : t.challenge} />
+              </div>
+            </Button>
+          </div>
+
+          <p className="mt-4 text-xs text-muted-foreground">{t.tap}</p>
+
+          <div className="mt-5 flex w-full max-w-[350px] gap-3">
+            <Button variant="soft" size="xl" className="flex-1 px-3" onClick={shuffleCard}>
+              <RefreshCw /> {t.change}
+            </Button>
+            <Button variant="love" size="xl" className="flex-1 px-3" onClick={nextCard}>
+              {t.next} <Sparkles />
+            </Button>
+          </div>
+        </section>
+      </main>
+    );
+  }
+
+  return (
+    <main className="love-pattern min-h-dvh bg-background px-5 py-6 sm:px-8 sm:py-10">
+      <div className="mx-auto max-w-4xl">
+        <header className="flex items-center justify-between">
+          <Brand compact />
+          <LanguageToggle language={language} setLanguage={setLanguage} />
+        </header>
+
+        <section className="mx-auto max-w-2xl pb-10 pt-12 text-center sm:pt-16">
+          <div className="mx-auto mb-5 grid h-20 w-20 place-items-center rounded-full border border-gold bg-card shadow-[0_12px_38px_var(--shadow-love)]">
+            <Heart className="size-9 fill-primary text-primary" strokeWidth={1.25} />
+          </div>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-gold">Obrolan Hati</p>
+          <h1 className="font-display text-5xl font-semibold leading-tight text-primary sm:text-7xl">iaayan love</h1>
+          <p className="mt-3 text-sm text-muted-foreground sm:text-base">{t.subtitle}</p>
+
+          <div className="mt-6 flex flex-wrap justify-center gap-2.5 text-xs font-medium text-foreground">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/70 px-3 py-1.5"><Star className="size-3.5 fill-gold text-gold" /> {t.rating}</span>
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/70 px-3 py-1.5"><Heart className="size-3.5 fill-pink-deep text-pink-deep" /> {t.sold}</span>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-3xl">
+          <div className="mb-5 text-center">
+            <h2 className="font-display text-2xl font-semibold text-foreground">{t.choose}</h2>
+            <p className="mt-1 text-sm text-muted-foreground">{t.intro}</p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+            {categories.map((category) => {
+              const active = selected === category.key;
+              return (
+                <Button
+                  key={category.key}
+                  variant="bare"
+                  onClick={() => setSelected(category.key)}
+                  aria-pressed={active}
+                  className={`group relative h-28 flex-col overflow-hidden border bg-card p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md ${active ? "border-gold ring-2 ring-gold/30" : "border-border"}`}
+                >
+                  <span className={`absolute inset-x-0 top-0 h-2 ${category.color}`} />
+                  <span className={`mb-2 grid h-9 w-9 place-items-center rounded-full ${category.color} text-lg text-foreground transition-transform group-hover:scale-110`}>{category.mark}</span>
+                  <span className="font-display text-base font-semibold">{category.label[language]}</span>
+                  {active && <span className="absolute right-2 top-3 h-2 w-2 rounded-full bg-gold" />}
+                </Button>
+              );
+            })}
+          </div>
+
+          <Button variant="love" size="xl" className="mx-auto mt-7 flex w-full max-w-sm" onClick={() => { setPlaying(true); setCardIndex(0); setFlipped(false); }}>
+            <Heart className="fill-current" /> {t.start}
+          </Button>
+        </section>
+
+        <footer className="pt-12 text-center text-xs text-muted-foreground">Dibuat untuk percakapan yang lebih dekat ♡</footer>
+      </div>
+    </main>
+  );
+}
+
+function LanguageToggle({ language, setLanguage }: { language: Language; setLanguage: (language: Language) => void }) {
+  return (
+    <div className="flex items-center gap-1 rounded-lg border border-border bg-card/70 p-1 shadow-sm">
+      <Languages className="ml-1 size-4 text-gold" />
+      <Button variant={language === "id" ? "love" : "quiet"} size="sm" onClick={() => setLanguage("id")} aria-label="Bahasa Indonesia">ID</Button>
+      <Button variant={language === "en" ? "love" : "quiet"} size="sm" onClick={() => setLanguage("en")} aria-label="English">EN</Button>
+    </div>
+  );
+}
+
+function CardFace({ front = false, language, type, prompt, label }: { front?: boolean; language: Language; type: CardType; prompt: string; label: string }) {
+  return (
+    <div className={`backface-hidden absolute inset-0 flex flex-col rounded-[22px] border border-gold bg-card p-3 shadow-[0_22px_55px_var(--shadow-love)] ${front ? "" : "rotate-y-180"}`}>
+      <div className="flex h-full flex-col rounded-[15px] border border-gold/55 px-7 py-6">
+        <div className="flex items-center justify-between">
+          <Brand compact />
+          <span className="font-display text-lg text-gold">{type === "truth" ? "T" : "D"}</span>
+        </div>
+        <div className="flex flex-1 flex-col items-center justify-center">
+          <Heart className="mb-5 size-6 text-gold" strokeWidth={1.25} />
+          <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-gold">{label}</p>
+          <p className="whitespace-normal text-center font-display text-[1.45rem] font-medium leading-[1.45] text-foreground">“{prompt}”</p>
+        </div>
+        <div className="flex items-center justify-center gap-3 text-gold-soft">
+          <span className="h-px w-10 bg-gold-soft" /><Heart className="size-3 fill-current" /><span className="h-px w-10 bg-gold-soft" />
+        </div>
+        <p className="mt-3 text-center text-[9px] uppercase tracking-[0.16em] text-muted-foreground">{language === "id" ? "dari hati ke hati" : "heart to heart"}</p>
+      </div>
     </div>
   );
 }
