@@ -19,6 +19,8 @@
  */
 
 @theme inline {
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "Poppins", ui-sans-serif, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -59,29 +61,50 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-pink-wash: var(--pink-wash);
+  --color-pink-deep: var(--pink-deep);
+  --color-category-pacar: var(--category-pacar);
+  --color-category-pdkt: var(--category-pdkt);
+  --color-category-teman: var(--category-teman);
+  --color-category-pasutri: var(--category-pasutri);
+  --color-category-keluarga: var(--category-keluarga);
+  --color-category-mantan: var(--category-mantan);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --radius: 0.75rem;
+  --background: oklch(0.93 0.045 7);
+  --foreground: oklch(0.32 0.045 35);
+  --card: oklch(0.995 0.005 70);
+  --card-foreground: oklch(0.32 0.045 35);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --primary: oklch(0.53 0.115 28);
+  --primary-foreground: oklch(0.985 0.008 50);
+  --secondary: oklch(0.955 0.035 12);
+  --secondary-foreground: oklch(0.39 0.065 28);
+  --muted: oklch(0.95 0.018 35);
+  --muted-foreground: oklch(0.5 0.035 35);
+  --accent: oklch(0.91 0.055 12);
+  --accent-foreground: oklch(0.38 0.075 27);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.77 0.055 64 / 45%);
+  --input: oklch(0.86 0.035 25);
+  --ring: oklch(0.63 0.11 42);
+  --gold: oklch(0.57 0.095 65);
+  --gold-soft: oklch(0.82 0.08 75);
+  --pink-wash: oklch(0.95 0.035 7);
+  --pink-deep: oklch(0.72 0.105 10);
+  --category-pacar: oklch(0.86 0.09 8);
+  --category-pdkt: oklch(0.88 0.105 102);
+  --category-teman: oklch(0.82 0.075 230);
+  --category-pasutri: oklch(0.69 0.13 25);
+  --category-keluarga: oklch(0.78 0.055 72);
+  --category-mantan: oklch(0.46 0.025 35);
+  --shadow-love: oklch(0.42 0.09 25 / 22%);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +163,38 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    min-width: 320px;
+    margin: 0;
+  }
+}
+
+@utility card-perspective {
+  perspective: 1200px;
+}
+
+@utility preserve-3d {
+  transform-style: preserve-3d;
+}
+
+@utility backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+@utility rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+@utility love-pattern {
+  background-image: radial-gradient(circle at 20% 15%, oklch(1 0 0 / 24%) 0 1px, transparent 2px), radial-gradient(circle at 80% 85%, oklch(0.75 0.08 15 / 14%) 0 1px, transparent 2px);
+  background-size: 26px 26px, 34px 34px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }
