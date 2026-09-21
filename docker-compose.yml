@@ -1,0 +1,11 @@
+services:
+  app:
+    build: .
+    container_name: obrolan-hati
+    restart: unless-stopped
+    ports:
+      - "7319:7319"
+    environment:
+      - NODE_ENV=production
+      - PORT=7319
+      - HOST=0.0.0.0

@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { ArrowLeft, Heart, Languages, RefreshCw, Sparkles, Star } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowLeft, Heart, Languages, RefreshCw, Sparkles, Sparkle } from "lucide-react";
 import { useMemo, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -38,8 +38,6 @@ const copy = {
     intro: "Pilih edisi yang paling pas untuk obrolan kalian.",
     choose: "Pilih Edisimu",
     start: "Mulai Bermain",
-    sold: "50rb+ terjual",
-    rating: "Rating 4.9",
     back: "Kembali ke Menu",
     next: "Kartu Selanjutnya",
     change: "Ganti Kartu",
@@ -54,8 +52,6 @@ const copy = {
     intro: "Choose the edition that fits your conversation.",
     choose: "Choose Your Edition",
     start: "Start Playing",
-    sold: "50K+ sold",
-    rating: "4.9 rating",
     back: "Back to Menu",
     next: "Next Card",
     change: "Shuffle Card",
@@ -69,12 +65,12 @@ const copy = {
 
 function Brand({ compact = false }: { compact?: boolean }) {
   return (
-    <div className="inline-flex items-center gap-2 text-primary">
+    <Link to="/" className="inline-flex items-center gap-2 text-primary no-underline hover:no-underline">
       <span className={`${compact ? "h-7 w-7" : "h-11 w-11"} grid place-items-center rounded-full border border-gold bg-card shadow-sm`}>
         <Heart className={compact ? "size-3.5 fill-current" : "size-5 fill-current"} strokeWidth={1.5} />
       </span>
       <span className={`${compact ? "text-lg" : "text-2xl"} font-display font-semibold`}>iaayan love</span>
-    </div>
+    </Link>
   );
 }
 
@@ -110,16 +106,24 @@ function Index() {
 
   if (playing) {
     return (
-      <main className="love-pattern relative min-h-dvh overflow-hidden bg-background px-4 py-5 sm:px-8 sm:py-7">
+      <main className="love-pattern relative min-h-dvh overflow-hidden bg-background px-4 pb-8 pt-4 sm:px-8 sm:py-7">
         <header className="mx-auto flex max-w-5xl items-center justify-between">
           <Button variant="quiet" onClick={() => setPlaying(false)} className="-ml-2 px-2 sm:px-3" aria-label={t.back}>
             <ArrowLeft /> <span className="hidden sm:inline">{t.back}</span>
           </Button>
           <Brand compact />
-          <LanguageToggle language={language} setLanguage={setLanguage} />
+          <div className="flex items-center gap-2">
+            <Link
+              to="/love-quiz"
+              className="hidden sm:inline-flex items-center gap-1 rounded-lg border border-pink-200 bg-pink-50 px-2.5 py-1 text-xs font-semibold text-pink-600 shadow-sm transition-all hover:bg-pink-100 no-underline"
+            >
+              <Sparkle className="size-3" /> Tes Sayang
+            </Link>
+            <LanguageToggle language={language} setLanguage={setLanguage} />
+          </div>
         </header>
 
-        <section className="mx-auto flex max-w-5xl flex-col items-center pt-6 sm:pt-9">
+        <section className="mx-auto flex max-w-5xl flex-col items-center pt-4 sm:pt-9">
           <div className="mb-4 flex items-center gap-2 text-sm font-medium text-muted-foreground">
             <span className={`h-3 w-3 rounded-full ${activeCategory.color}`} />
             {activeCategory.label[language]}
@@ -139,7 +143,7 @@ function Index() {
             ))}
           </div>
 
-          <div className="card-perspective w-full max-w-[350px]">
+          <div className="card-perspective w-full max-w-[320px] sm:max-w-[350px]">
             <Button
               variant="bare"
               onClick={() => setFlipped((value) => !value)}
@@ -155,7 +159,7 @@ function Index() {
 
           <p className="mt-4 text-xs text-muted-foreground">{t.tap}</p>
 
-          <div className="mt-5 flex w-full max-w-[350px] gap-3">
+          <div className="mt-5 flex w-full max-w-[320px] gap-2 sm:max-w-[350px] sm:gap-3">
             <Button variant="soft" size="xl" className="flex-1 px-3" onClick={shuffleCard}>
               <RefreshCw /> {t.change}
             </Button>
@@ -169,25 +173,28 @@ function Index() {
   }
 
   return (
-    <main className="love-pattern min-h-dvh bg-background px-5 py-6 sm:px-8 sm:py-10">
+    <main className="love-pattern min-h-dvh bg-background px-4 pb-10 pt-4 sm:px-8 sm:py-10">
       <div className="mx-auto max-w-4xl">
         <header className="flex items-center justify-between">
           <Brand compact />
-          <LanguageToggle language={language} setLanguage={setLanguage} />
+          <div className="flex items-center gap-2">
+            <Link
+              to="/love-quiz"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-pink-200 bg-pink-50 px-3 py-1.5 text-xs font-semibold text-pink-600 shadow-sm transition-all hover:bg-pink-100 hover:scale-105 no-underline"
+            >
+              <Sparkle className="size-3.5" /> Tes Sayang 💕
+            </Link>
+            <LanguageToggle language={language} setLanguage={setLanguage} />
+          </div>
         </header>
 
-        <section className="mx-auto max-w-2xl pb-10 pt-12 text-center sm:pt-16">
+        <section className="mx-auto max-w-2xl pb-6 pt-8 text-center sm:pb-10 sm:pt-16">
           <div className="mx-auto mb-5 grid h-20 w-20 place-items-center rounded-full border border-gold bg-card shadow-[0_12px_38px_var(--shadow-love)]">
             <Heart className="size-9 fill-primary text-primary" strokeWidth={1.25} />
           </div>
           <p className="mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-gold">Obrolan Hati</p>
-          <h1 className="font-display text-5xl font-semibold leading-tight text-primary sm:text-7xl">iaayan love</h1>
+          <h1 className="font-display text-4xl font-semibold leading-tight text-primary sm:text-7xl">iaayan love</h1>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">{t.subtitle}</p>
-
-          <div className="mt-6 flex flex-wrap justify-center gap-2.5 text-xs font-medium text-foreground">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/70 px-3 py-1.5"><Star className="size-3.5 fill-gold text-gold" /> {t.rating}</span>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/70 px-3 py-1.5"><Heart className="size-3.5 fill-pink-deep text-pink-deep" /> {t.sold}</span>
-          </div>
         </section>
 
         <section className="mx-auto max-w-3xl">
@@ -196,22 +203,21 @@ function Index() {
             <p className="mt-1 text-sm text-muted-foreground">{t.intro}</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-3">
             {categories.map((category) => {
               const active = selected === category.key;
               return (
-                <Button
+                <button
                   key={category.key}
-                  variant="bare"
                   onClick={() => setSelected(category.key)}
                   aria-pressed={active}
-                  className={`group relative h-28 flex-col overflow-hidden border bg-card p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md ${active ? "border-gold ring-2 ring-gold/30" : "border-border"}`}
+                  className={`group relative flex flex-col items-center justify-center overflow-visible border bg-card py-4 px-2 min-h-[80px] shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md rounded-xl ${active ? "border-gold ring-2 ring-gold/30" : "border-border"}`}
                 >
-                  <span className={`absolute inset-x-0 top-0 h-2 ${category.color}`} />
-                  <span className={`mb-2 grid h-9 w-9 place-items-center rounded-full ${category.color} text-lg text-foreground transition-transform group-hover:scale-110`}>{category.mark}</span>
-                  <span className="font-display text-base font-semibold">{category.label[language]}</span>
+                  <span className={`absolute inset-x-0 top-0 h-2 rounded-t-xl ${category.color}`} />
+                  <span className={`mb-2 grid h-10 w-10 shrink-0 place-items-center rounded-full ${category.color} text-lg sm:text-xl text-foreground transition-transform group-hover:scale-110`}>{category.mark}</span>
+                  <span className="font-display text-[13px] sm:text-sm font-bold text-center leading-tight text-foreground">{category.label[language]}</span>
                   {active && <span className="absolute right-2 top-3 h-2 w-2 rounded-full bg-gold" />}
-                </Button>
+                </button>
               );
             })}
           </div>
@@ -221,7 +227,10 @@ function Index() {
           </Button>
         </section>
 
-        <footer className="pt-12 text-center text-xs text-muted-foreground">Dibuat untuk percakapan yang lebih dekat ♡</footer>
+        <footer className="pb-6 pt-12 text-center text-xs text-muted-foreground">
+          <p>Dibuat untuk percakapan yang lebih dekat ♡</p>
+          <p className="mt-2">© loveiaayan18062026</p>
+        </footer>
       </div>
     </main>
   );

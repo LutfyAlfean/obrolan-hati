@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "question": "Apa makanan favorit pasanganmu?",
+    "options": ["Nasi Goreng", "Mie Ayam", "Sate", "Rendang", "Pizza", "Sushi"],
+    "hint": "Ingat dia selalu pesan apa kalau ke warung 😋"
+  },
+  {
+    "id": 2,
+    "question": "Apa warna favorit pasanganmu?",
+    "options": ["Pink", "Biru", "Hijau", "Ungu", "Merah", "Kuning"],
+    "hint": "Coba cek koleksi bajunya 👗"
+  },
+  {
+    "id": 3,
+    "question": "Berapa tanggal lahir pasanganmu?",
+    "options": ["Tanggal 1-10", "Tanggal 11-20", "Tanggal 21-31"],
+    "hint": "Jangan sampai salah ya! 🎂"
+  },
+  {
+    "id": 4,
+    "question": "Apa hobi utama pasanganmu?",
+    "options": ["Nonton Drakor", "Main Game", "Masak", "Jalan-jalan", "Baca Buku", "Karaoke"],
+    "hint": "Yang sering dia lakukan pas gabut 📱"
+  },
+  {
+    "id": 5,
+    "question": "Apa lagu favorit pasanganmu?",
+    "options": ["Lagu Galau", "Lagu Romantis", "Lagu Happy", "Lagu Dangdut", "Lagu Korea", "Lagu Barat"],
+    "hint": "Cek playlist Spotify-nya 🎵"
+  },
+  {
+    "id": 6,
+    "question": "Apa film favorit pasanganmu?",
+    "options": ["Horor", "Romantis", "Komedi", "Action", "Anime", "Drama Korea"],
+    "hint": "Yang paling sering dia tonton 🎬"
+  },
+  {
+    "id": 7,
+    "question": "Apa panggilan sayang yang kalian pakai?",
+    "options": ["Sayang", "Beb", "Bebek", "Sayank", "Kesayanganku", "Manis"],
+    "hint": "Panggilan yang biasa kalian pakai 💕"
+  },
+  {
+    "id": 8,
+    "question": "Apa ketakutan terbesar pasanganmu?",
+    "options": ["Ketinggian", "Gelap", "Kecoa", "Sendirian", "Kehilangan", "Hantu"],
+    "hint": "Yang bikin dia teriak 🙀"
+  },
+  {
+    "id": 9,
+    "question": "Apa arti mimpi pasanganmu kalau giginya copot?",
+    "options": ["Kehilangan orang", "Dapat uang", "Jodoh mati", "Rezeki", "Musibah", "Pertanda baik"],
+    "hint": "Banyak yang bilang ini pertanda tertentu 🔮"
+  },
+  {
+    "id": 10,
+    "question": "Kalau kalian bertengkar, pasanganmu lebih suka diapakan?",
+    "options": ["Dipeluk", "Dibiarkan dulu", "Diajak ngobrol", "Dikasih makan", "Dibantuin", "Dimaafin langsung"],
+    "hint": "Perhatikan dia pas lagi ngambek 😤"
+  },
+  {
+    "id": 11,
+    "question": "Apa style foto pasanganmu di IG?",
+    "options": ["Aesthetic", "Candid", "Selfie Close-up", "Full Body", "Pemandangan", "Makanan"],
+    "hint": "Cek feed Instagram-nya 📸"
+  },
+  {
+    "id": 12,
+    "question": "Apa rasa es krim favorit pasanganmu?",
+    "options": ["Cokelat", "Vanila", "Stroberi", "Matcha", "Cookies & Cream", "Mangga"],
+    "hint": "Yang selalu dipilih kalau ke ice cream shop 🍦"
+  },
+  {
+    "id": 13,
+    "question": "Apa mimpi masa depan pasanganmu?",
+    "options": ["Nikah muda", "Jadi kaya", "Traveling dunia", "Punya rumah sendiri", "Bisnis sukses", "Keluarga bahagia"],
+    "hint": "Yang sering dia ceritain pas ngobrol malam-malam ✨"
+  },
+  {
+    "id": 14,
+    "question": "Apa cara pasanganmu menunjukkan sayang?",
+    "options": ["Peluk", "Kiss", "Kirim Chat Manis", "Beliin Makan", "Perhatian Kecil", "Quality Time"],
+    "hint": "Hal-hal kecil yang sering dia lakukan 💝"
+  },
+  {
+    "id": 15,
+    "question": "Kalau hadiah, pasanganmu lebih suka apa?",
+    "options": ["Bunga", "Cokelat", "Surat Cinta", "Kado Kejutan", "Quality Time", "Foto Bareng"],
+    "hint": "Hadiah yang bikin dia paling senang 🎁"
+  }
+]
